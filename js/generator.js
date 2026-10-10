@@ -1,6 +1,7 @@
 // MezaTag Generator: Fiducial Marker and Mezastar Tag Designer
 const MezaGenerator = (function() {
   const DICTIONARY_OPTIONS = [
+    { id: 'MEZASTAR_MICRO_QR', label: '🏷️ Micro QR Code Mezastar (Tag Asli Arcade M2)', maxId: 99999999 },
     { id: 'ARUCO_4X4_1000', label: 'ArUco 4x4 (1000 IDs) [Rekomendasi]', maxId: 999 },
     { id: 'ARUCO_5X5_1000', label: 'ArUco 5x5 (1000 IDs)', maxId: 999 },
     { id: 'ARUCO_6X6_1000', label: 'ArUco 6x6 (1000 IDs)', maxId: 999 },
@@ -32,6 +33,31 @@ const MezaGenerator = (function() {
 
   // Draw Marker onto an existing 2D Canvas context at (x, y, size)
   function drawMarkerToCanvas(ctx, dictionaryName, id, x, y, size) {
+    if (dictionaryName === 'MEZASTAR_MICRO_QR' || (String(id).length >= 6 && /^\d+$/.test(String(id)))) {
+      const sym = (typeof MezaCopier !== 'undefined') ? MezaCopier.getSymbol(String(id)) : null;
+      if (sym) {
+        const quietZone = 2;
+        const totalCols = sym.width + quietZone * 2;
+        const cellSize = size / totalCols;
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(x, y, size, size);
+        ctx.fillStyle = '#000000';
+        for (let r = 0; r < sym.height; r++) {
+          for (let c = 0; c < sym.width; c++) {
+            if (sym.data[r * sym.width + c] === 0) {
+              ctx.fillRect(
+                Math.round(x + (c + quietZone) * cellSize),
+                Math.round(y + (r + quietZone) * cellSize),
+                Math.ceil(cellSize),
+                Math.ceil(cellSize)
+              );
+            }
+          }
+        }
+        return;
+      }
+    }
+
     const dict = getDictionary(dictionaryName);
     const code = dict.codeList[id];
     if (!code) throw new Error(`Invalid marker ID ${id} for ${dictionaryName}`);

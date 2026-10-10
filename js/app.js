@@ -536,8 +536,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <!-- Section 4: Quick Action Buttons -->
         <div class="extraction-actions">
+          <button class="btn btn-sm btn-primary" id="btn-ext-to-copier" style="background:linear-gradient(135deg, #2563EB, #7C3AED); font-weight:bold;">
+            🏷️ Kloning / Edit di Copier
+          </button>
           <button class="btn btn-sm btn-primary" id="btn-ext-send-hex">
-            ⚡ Buka di Hex & NFC Studio
+            ⚡ Buka di Hex Studio
           </button>
           <button class="btn btn-sm" id="btn-ext-copy-hex">
             📋 Salin Hex (${data.directHex})
@@ -556,6 +559,20 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     // Event Listeners for Quick Action Buttons
+    document.getElementById('btn-ext-to-copier')?.addEventListener('click', () => {
+      MezaAudio.playClick();
+      if (typeof MezaCopier !== 'undefined' && MezaCopier.loadTag) {
+        MezaCopier.loadTag(m);
+      }
+      const tabHexBtn = document.querySelector('[data-tab="tab-hex-nfc"]');
+      if (tabHexBtn) tabHexBtn.click();
+      setTimeout(() => {
+        const copierCard = document.querySelector('.copier-layout-grid');
+        if (copierCard) copierCard.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      showToast(`🏷️ Tag #${data.rawText} dimuat ke Mezastar Copier!`);
+    });
+
     document.getElementById('btn-ext-send-hex')?.addEventListener('click', () => {
       MezaAudio.playClick();
       const tabHexBtn = document.querySelector('[data-tab="tab-hex-nfc"]');
@@ -977,4 +994,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('[data-tab="tab-generator"]').click();
     showToast('Payload berhasil ditautkan ke Generator!');
   });
+
+  // Initialize MezaCopier
+  if (typeof MezaCopier !== 'undefined' && MezaCopier.init) {
+    MezaCopier.init();
+  }
 });

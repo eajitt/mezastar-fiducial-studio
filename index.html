@@ -314,6 +314,153 @@
       </div>
     <!-- ==================== TAB 5: HEX & NFC STUDIO ==================== -->
     <section id="tab-hex-nfc" class="tab-pane">
+
+      <!-- ==================== MEZASTAR TAG COPIER & TWO-WAY CONVERTER ==================== -->
+      <div class="card-panel" style="margin-bottom:24px; border:1px solid rgba(59, 130, 246, 0.4); box-shadow:0 8px 30px rgba(0, 0, 0, 0.3);">
+        <div class="panel-header" style="border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:16px;">
+          <div>
+            <h2 class="panel-title" style="font-size:17px; display:flex; align-items:center; gap:8px;">
+              <span>🏷️</span> Mezastar Tag Copier & Two-Way Hex Converter
+            </h2>
+            <p style="font-size:12px; color:var(--text-muted); margin:4px 0 0 0;">
+              Alat kloning tag arcade, konversi data awam ke heksadesimal bolak-balik, dan generator Micro QR Code resmi dengan uji kelayakan sensor.
+            </p>
+          </div>
+          <span class="extraction-badge" style="background:rgba(34, 197, 94, 0.15); color:var(--success); border-color:rgba(34, 197, 94, 0.3);">
+            ● Micro QR M2 (13×13)
+          </span>
+        </div>
+
+        <div class="copier-layout-grid">
+          <!-- Left Column: Input Ramah Pengguna & Hex Table -->
+          <div class="copier-input-col">
+            <h4 style="font-size:13px; color:var(--primary); margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+              <span>👤</span> 1. Input Ramah Pengguna (Awam)
+            </h4>
+            <p style="font-size:11px; color:var(--text-muted); margin-bottom:12px;">
+              Ubah nomor seri atau ID di bawah ini tanpa perlu menghitung kode heksadesimal secara manual:
+            </p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="copier-series">Nomor Seri / Batch (2 Digit)</label>
+                <input type="text" id="copier-series" class="form-input font-mono" value="79" maxlength="2">
+                <span style="font-size:10px; color:var(--text-muted);">Contoh: 79 (Seri Mezastar Tag)</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="copier-index">Nomor Indeks Kartu (6 Digit)</label>
+                <input type="text" id="copier-index" class="form-input font-mono" value="778762" maxlength="6">
+                <span style="font-size:10px; color:var(--text-muted);">Contoh: 778762 (ID Pokémon #8762)</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="copier-payload">Nilai Desimal Utuh (Gabungan Seri + Indeks)</label>
+              <input type="text" id="copier-payload" class="form-input font-mono" value="79778762" style="font-weight:bold; color:var(--primary); font-size:15px;">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="copier-pkmn-name">Nama Pokémon Tag</label>
+                <input type="text" id="copier-pkmn-name" class="form-input" value="Rayquaza #8762">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="copier-pkmn-type">Tipe & Rarity</label>
+                <select id="copier-pkmn-type" class="form-select">
+                  <option value="Dragon" selected>🐉 Dragon (Super Star ★★★★★)</option>
+                  <option value="Fire">🔥 Fire (Super Star ★★★★★)</option>
+                  <option value="Electric">⚡ Electric (Super Star ★★★★★)</option>
+                  <option value="Water">💧 Water (Super Star ★★★★★)</option>
+                  <option value="Psychic">🔮 Psychic (Legend Star ★★★★★★)</option>
+                  <option value="Ghost">👻 Ghost (Master ★★★★)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Two-Way Hex Synced Table -->
+            <h4 style="font-size:13px; color:var(--accent); margin-top:16px; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+              <span>⚡</span> 2. Konversi Balik ke Format Hexadecimal (Sinkron Real-Time)
+            </h4>
+
+            <div class="copier-hex-table">
+              <div class="hex-row-edit">
+                <span class="hex-lbl">Hex Bytes (4-Byte) [Bisa Diedit Langsung]:</span>
+                <input type="text" id="copier-hex-editable" class="form-input font-mono" value="79 77 87 62" style="font-weight:bold; color:#38BDF8;">
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">ASCII HEX BYTES:</span>
+                <span id="copier-res-ascii" class="hex-res-val font-mono">37 39 37 37 38 37 36 32</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">BCC PARITY CHECKSUM (XOR):</span>
+                <span id="copier-res-bcc" class="hex-res-val font-mono" style="color:var(--success);">0xEB (Valid Checksum)</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">32-BIT INTEGER (BIG-ENDIAN):</span>
+                <span id="copier-res-be" class="hex-res-val font-mono">0x79778762</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">32-BIT INTEGER (LITTLE-ENDIAN):</span>
+                <span id="copier-res-le" class="hex-res-val font-mono">0x62877779</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">BITSTREAM BINER (32-BIT):</span>
+                <span id="copier-res-bin" class="hex-res-val font-mono" style="color:#A78BFA; font-size:11px;">01111001 01110111 10000111 01100010</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Micro QR Copier Preview & Feasibility Test -->
+          <div class="copier-preview-col">
+            <h4 style="font-size:13px; color:var(--primary); margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+              <span>🖨️</span> 3. Hasil Kloning Micro QR Asli (Denso Wave M2)
+            </h4>
+
+            <div class="copier-qr-box">
+              <canvas id="copier-qr-canvas" width="200" height="200" style="background:#FFFFFF; border-radius:8px; padding:6px; box-shadow:0 4px 15px rgba(0,0,0,0.5);"></canvas>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:8px; text-align:center;">
+                Pola Matriks 13×13 • 1 Finder Pattern di Pojok Kiri Atas
+              </div>
+            </div>
+
+            <!-- Feasibility Test Box -->
+            <div class="feasibility-card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-size:12px; font-weight:700; color:var(--text-main);">🧪 Uji Coba Kelayakan (Feasibility Test)</span>
+                <button id="btn-run-feasibility" class="btn btn-sm btn-primary">Uji Ulang</button>
+              </div>
+              <div id="feasibility-result">
+                <div class="feasibility-status-badge success">
+                  ✅ 100% IDENTIK DENGAN TAG ASLI (LOLOS UJI)
+                </div>
+                <div class="feasibility-detail">
+                  Diverifikasi oleh ZXingWASM: <strong>MicroQRCode (M2)</strong> • Payload: <code>79778762</code> (Cocok Sempurna).
+                </div>
+              </div>
+            </div>
+
+            <!-- Copier Actions -->
+            <div class="btn-group" style="margin-top:12px;">
+              <button id="btn-copier-download-qr" class="btn btn-primary" style="flex:1;">
+                📥 Unduh Micro QR PNG
+              </button>
+              <button id="btn-copier-print-tag" class="btn btn-success" style="flex:1;">
+                🖨️ Cetak Kartu 1:1 Arcade
+              </button>
+            </div>
+
+            <div class="btn-group" style="margin-top:8px;">
+              <button id="btn-copier-to-generator" class="btn" style="flex:1;">
+                🎨 Bawa ke Tag Designer
+              </button>
+              <button id="btn-copier-to-arena" class="btn" style="flex:1;">
+                ⚔️ Bawa ke Arena
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="two-col-grid">
 
         <!-- Column 1: Smart Hex Converter & Web NFC -->
@@ -474,19 +621,20 @@
   </main>
 
   <!-- Vendor Libraries -->
-  <script src="js/vendor/cv.js?v=1.4.0"></script>
-  <script src="js/vendor/aruco.js?v=1.4.0"></script>
-  <script src="js/vendor/dictionaries.js?v=1.4.0"></script>
-  <script src="js/vendor/zxing-reader.js?v=1.4.0"></script>
+  <script src="js/vendor/cv.js?v=1.5.0"></script>
+  <script src="js/vendor/aruco.js?v=1.5.0"></script>
+  <script src="js/vendor/dictionaries.js?v=1.5.0"></script>
+  <script src="js/vendor/zxing-full.js?v=1.5.0"></script>
 
   <!-- App Modules -->
-  <script src="js/db.js?v=1.4.0"></script>
-  <script src="js/audio.js?v=1.4.0"></script>
-  <script src="js/hex_nfc.js?v=1.4.0"></script>
-  <script src="js/generator.js?v=1.4.0"></script>
-  <script src="js/scanner.js?v=1.4.0"></script>
-  <script src="js/arena.js?v=1.4.0"></script>
-  <script src="js/app.js?v=1.4.0"></script>
+  <script src="js/db.js?v=1.5.0"></script>
+  <script src="js/audio.js?v=1.5.0"></script>
+  <script src="js/hex_nfc.js?v=1.5.0"></script>
+  <script src="js/copier.js?v=1.5.0"></script>
+  <script src="js/generator.js?v=1.5.0"></script>
+  <script src="js/scanner.js?v=1.5.0"></script>
+  <script src="js/arena.js?v=1.5.0"></script>
+  <script src="js/app.js?v=1.5.0"></script>
 
 </body>
 </html>
