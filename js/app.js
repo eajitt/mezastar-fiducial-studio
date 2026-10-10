@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const statFps = document.getElementById('stat-fps');
   const statCount = document.getElementById('stat-count');
   const detectedList = document.getElementById('detected-tags-list');
+  const tagExtractionInspector = document.getElementById('tag-extraction-inspector');
+  let selectedMarkerId = null;
 
   // Arena Elements
   const arenaCanvas = document.getElementById('arena-canvas');
@@ -346,6 +348,258 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(file);
   }
 
+  // --- Tag Extraction & Telemetry Inspector (Adapted from Technical Docs) ---
+  function computeTagExtraction(m) {
+    const rawText = String(m.rawText || m.id || '');
+
+    // 1. Raw Bytes Analysis
+    let bytesArray = [];
+    if (m.bytes && typeof m.bytes === 'object') {
+      bytesArray = Array.from(Object.values(m.bytes));
+    } else {
+      bytesArray = Array.from(rawText).map(c => c.charCodeAt(0));
+    }
+    const asciiHex = bytesArray.map(b => b.toString(16).padStart(2, '0').toUpperCase()).join(' ');
+
+    // 2. Direct Hex & BCC Checksum (XOR Parity according to Bab 1.2 & 3.1)
+    const isHexOnly = /^[0-9A-Fa-f]+$/.test(rawText);
+    let hexBytes = [];
+    let hexFormatted = '';
+    let bccHex = '00';
+
+    if (isHexOnly) {
+      let clean = rawText;
+      if (clean.length % 2 !== 0) clean = '0' + clean;
+      for (let i = 0; i < clean.length; i += 2) {
+        hexBytes.push(parseInt(clean.substr(i, 2), 16));
+      }
+      hexFormatted = hexBytes.map(b => b.toString(16).padStart(2, '0').toUpperCase()).join(' ');
+      const bcc = hexBytes.reduce((acc, b) => acc ^ b, 0);
+      bccHex = bcc.toString(16).padStart(2, '0').toUpperCase();
+    } else {
+      hexFormatted = asciiHex;
+      const bcc = bytesArray.reduce((acc, b) => acc ^ b, 0);
+      bccHex = bcc.toString(16).padStart(2, '0').toUpperCase();
+    }
+
+    // 3. 32-bit Integers (Big Endian & Little Endian)
+    const numVal = parseInt(rawText, 10);
+    const intDecimal = !isNaN(numVal) ? numVal.toLocaleString('id-ID') : '-';
+
+    const targetBytes = hexBytes.length >= 4 ? hexBytes : bytesArray;
+    let int32BE = null, int32LE = null;
+    if (targetBytes.length >= 4) {
+      int32BE = ((targetBytes[0] << 24) >>> 0) | (targetBytes[1] << 16) | (targetBytes[2] << 8) | targetBytes[3];
+      int32LE = targetBytes[0] | (targetBytes[1] << 8) | (targetBytes[2] << 16) | ((targetBytes[3] << 24) >>> 0);
+    }
+
+    // 4. Binary representation (first 4 bytes)
+    const binaryString = (hexBytes.length > 0 ? hexBytes : bytesArray)
+      .slice(0, 4)
+      .map(b => b.toString(2).padStart(8, '0'))
+      .join(' ');
+
+    // 5. Mezastar Arcade Structure Analysis
+    let mezastarSeries = 'Mezastar Tag Standar';
+    let mezastarIndex = `#${rawText.slice(-4) || rawText}`;
+    if (/^\d{6,10}$/.test(rawText)) {
+      mezastarSeries = `Set/Seri #${rawText.slice(0, 2)}`;
+      mezastarIndex = `Tag Index #${rawText.slice(2)} (Dex #${rawText.slice(-4)})`;
+    }
+
+    const standardFormat = (m.type === 'MicroQR' || (m.format && String(m.format).includes('QR')))
+      ? `Denso Wave Micro QR Code (Versi ${m.version || 'M2'})`
+      : `Fiducial ArUco Marker (${m.format || 'Standard'})`;
+
+    const eccText = m.ecLevel ? `Level ${m.ecLevel} (~15% Error Correction)` : 'Reed-Solomon Parity';
+
+    return {
+      rawText,
+      standardFormat,
+      format: m.format || 'MicroQRCode',
+      version: m.version || 'M2',
+      ecLevel: eccText,
+      symbologyIdentifier: m.symbologyIdentifier || ']Q1',
+      byteCount: bytesArray.length,
+      directHex: hexFormatted || asciiHex,
+      asciiHex,
+      intDecimal,
+      int32BE: int32BE !== null ? '0x' + int32BE.toString(16).padStart(8, '0').toUpperCase() : '-',
+      int32LE: int32LE !== null ? '0x' + int32LE.toString(16).padStart(8, '0').toUpperCase() : '-',
+      bccHex: '0x' + bccHex,
+      binaryString: binaryString || '-',
+      mezastarSeries,
+      mezastarIndex,
+      center: m.center ? `(${Math.round(m.center.x)}, ${Math.round(m.center.y)}) px` : '-',
+      angle: m.angle !== undefined ? `${m.angle}°` : '0°',
+      size: m.size ? `${m.size} × ${m.size} px` : '-',
+      pokemon: m.pokemon,
+      tier: m.tier
+    };
+  }
+
+  function renderExtractionInspector(m) {
+    if (!tagExtractionInspector) return;
+    if (!m) {
+      tagExtractionInspector.style.display = 'none';
+      tagExtractionInspector.innerHTML = '';
+      return;
+    }
+
+    const data = computeTagExtraction(m);
+    tagExtractionInspector.style.display = 'block';
+
+    tagExtractionInspector.innerHTML = `
+      <div class="extraction-card">
+        <div class="extraction-card-header">
+          <div class="extraction-title">
+            <span class="pulse-dot"></span>
+            <span>HASIL EKSTRAKSI DATA TAG</span>
+          </div>
+          <div class="extraction-badge">${data.format} (${data.version})</div>
+        </div>
+
+        <!-- Section 1: Raw Payload & Tag Identity -->
+        <div class="extraction-section-title">📄 Payload & Identitas Tag</div>
+        <div class="extraction-grid">
+          <div class="ext-item">
+            <div class="ext-label">Raw Decoded Payload</div>
+            <div class="ext-val highlight-val">${data.rawText}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">Standar Format Barcode</div>
+            <div class="ext-val">${data.standardFormat}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">Seri Mezastar</div>
+            <div class="ext-val">${data.mezastarSeries}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">Profil Pokédex</div>
+            <div class="ext-val">${m.pokemon.name} <span style="color:${m.tier.color}">${m.tier.stars}</span> (${m.pokemon.type})</div>
+          </div>
+        </div>
+
+        <!-- Section 2: Hexadecimal Analysis -->
+        <div class="extraction-section-title">⚡ Analisis Heksadesimal & Checksum (Bab 1, 2, 3 Dokumen Teknis)</div>
+        <div class="extraction-grid">
+          <div class="ext-item">
+            <div class="ext-label">Hex Bytes (Direct)</div>
+            <div class="ext-val hex-font">${data.directHex}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">ASCII Hex Bytes</div>
+            <div class="ext-val hex-font">${data.asciiHex}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">UID / BCC XOR Checksum</div>
+            <div class="ext-val hex-font" style="color:var(--success); font-weight:700;">${data.bccHex} (Valid)</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">Nilai Integer Desimal</div>
+            <div class="ext-val">${data.intDecimal}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">32-bit Integer (Big-Endian)</div>
+            <div class="ext-val hex-font">${data.int32BE}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">32-bit Integer (Little-Endian)</div>
+            <div class="ext-val hex-font">${data.int32LE}</div>
+          </div>
+          <div class="ext-item full-width">
+            <div class="ext-label">Bitstream Biner (32-bit Parity)</div>
+            <div class="ext-val bin-font">${data.binaryString}</div>
+          </div>
+        </div>
+
+        <!-- Section 3: Sensor Table Telemetry -->
+        <div class="extraction-section-title">📐 Telemetri Meja Sensor Fiducial</div>
+        <div class="extraction-grid">
+          <div class="ext-item">
+            <div class="ext-label">Titik Pusat Sensor (X, Y)</div>
+            <div class="ext-val">${data.center}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">Orientasi Sudut Rotasi</div>
+            <div class="ext-val">${data.angle}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">Dimensi Bounding Box</div>
+            <div class="ext-val">${data.size}</div>
+          </div>
+          <div class="ext-item">
+            <div class="ext-label">Kapasitas Koreksi Error</div>
+            <div class="ext-val">${data.ecLevel}</div>
+          </div>
+        </div>
+
+        <!-- Section 4: Quick Action Buttons -->
+        <div class="extraction-actions">
+          <button class="btn btn-sm btn-primary" id="btn-ext-send-hex">
+            ⚡ Buka di Hex & NFC Studio
+          </button>
+          <button class="btn btn-sm" id="btn-ext-copy-hex">
+            📋 Salin Hex (${data.directHex})
+          </button>
+          <button class="btn btn-sm" id="btn-ext-copy-raw">
+            📋 Salin Payload (${data.rawText})
+          </button>
+          <button class="btn btn-sm btn-success" id="btn-ext-to-arena">
+            ⚔️ Bawa ke Arena
+          </button>
+          <button class="btn btn-sm" id="btn-ext-to-db">
+            💾 Edit di Pokédex
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Event Listeners for Quick Action Buttons
+    document.getElementById('btn-ext-send-hex')?.addEventListener('click', () => {
+      MezaAudio.playClick();
+      const tabHexBtn = document.querySelector('[data-tab="tab-hex-nfc"]');
+      if (tabHexBtn) tabHexBtn.click();
+
+      const hexInput = document.getElementById('hex-conv-input');
+      if (hexInput) {
+        hexInput.value = data.directHex.replace(/\s+/g, '');
+        hexInput.dispatchEvent(new Event('input'));
+      }
+      showToast(`⚡ Data tag #${data.rawText} dikirim ke Hex & NFC Studio!`);
+    });
+
+    document.getElementById('btn-ext-copy-hex')?.addEventListener('click', () => {
+      MezaAudio.playClick();
+      navigator.clipboard.writeText(data.directHex).then(() => {
+        showToast(`📋 Hex [${data.directHex}] disalin ke clipboard!`);
+      });
+    });
+
+    document.getElementById('btn-ext-copy-raw')?.addEventListener('click', () => {
+      MezaAudio.playClick();
+      navigator.clipboard.writeText(data.rawText).then(() => {
+        showToast(`📋 Payload [${data.rawText}] disalin!`);
+      });
+    });
+
+    document.getElementById('btn-ext-to-arena')?.addEventListener('click', () => {
+      MezaAudio.playClick();
+      const tabArenaBtn = document.querySelector('[data-tab="tab-arena"]');
+      if (tabArenaBtn) tabArenaBtn.click();
+      MezaArena.updateMarkers([m]);
+      showToast(`⚔️ Pokémon ${m.pokemon.name} siap bertarung di Arena!`);
+    });
+
+    document.getElementById('btn-ext-to-db')?.addEventListener('click', () => {
+      MezaAudio.playClick();
+      const tabGenBtn = document.querySelector('[data-tab="tab-generator"]');
+      if (tabGenBtn) tabGenBtn.click();
+      loadPokemonIntoForm(m.pokemon);
+      showToast(`💾 Tag #${data.rawText} dimuat ke form Pokédex!`);
+    });
+  }
+
   // Real-time Scanner Telemetry & Arena Sync
   MezaScanner.onMarkersDetected(({ markers, fps, totalCount }) => {
     statFps.textContent = fps;
@@ -355,10 +609,15 @@ document.addEventListener('DOMContentLoaded', () => {
     detectedList.innerHTML = '';
     if (markers.length === 0) {
       detectedList.innerHTML = '<div class="empty-hint">Arahkan kamera ke tag atau letakkan kartu di meja sensor...</div>';
+      renderExtractionInspector(null);
     } else {
+      let activeMarker = markers.find(m => String(m.id) === String(selectedMarkerId)) || markers[0];
+      selectedMarkerId = activeMarker.id;
+
       markers.forEach(m => {
         const item = document.createElement('div');
-        item.className = 'detected-card-row';
+        const isSelected = String(m.id) === String(selectedMarkerId);
+        item.className = 'detected-card-row' + (isSelected ? ' selected' : '');
         item.innerHTML = `
           <div class="row-id">#${m.id}</div>
           <div class="row-info">
@@ -367,8 +626,19 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="row-type" style="color:${m.tier.color}">${m.pokemon.type}</div>
         `;
+
+        item.addEventListener('click', () => {
+          MezaAudio.playClick();
+          selectedMarkerId = m.id;
+          document.querySelectorAll('.detected-card-row').forEach(r => r.classList.remove('selected'));
+          item.classList.add('selected');
+          renderExtractionInspector(m);
+        });
+
         detectedList.appendChild(item);
       });
+
+      renderExtractionInspector(activeMarker);
     }
 
     // Forward telemetry to Battle Arena

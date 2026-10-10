@@ -48,6 +48,20 @@ Aplikasi lengkap untuk **menulis (generate/desain)** dan **membaca (detect/track
 
 ---
 
+## 🛠️ Cara Menjalankan Aplikasi
+
+Aplikasi saat ini telah aktif di komputer Anda pada:
+👉 **[http://localhost:3000](http://localhost:3000)**
+
+Jika Anda ingin menjalankannya kembali di masa mendatang:
+```bash
+cd "C:\Users\eugen\.gemini\antigravity\scratch\mezastar-fiducial-studio"
+npm start
+```
+Buka browser dan akses `http://localhost:3000`.
+
+---
+
 ## 🔨 Panduan Membuat Meja Sensor DIY Mezastar Fisik
 
 Jika Anda ingin merakit meja arcade fisik seperti aslinya:

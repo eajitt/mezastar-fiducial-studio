@@ -218,8 +218,14 @@ const MezaScanner = (function() {
 
             const item = {
               id: qr.text,
+              rawText: qr.text,
               type: 'MicroQR',
               format: qr.format || 'MicroQRCode',
+              version: qr.version || 'M2',
+              ecLevel: qr.ecLevel || 'M',
+              bytes: qr.bytes,
+              symbology: qr.symbology || 'QRCode',
+              symbologyIdentifier: qr.symbologyIdentifier || ']Q1',
               corners,
               center: { x: cx, y: cy },
               angle: angleDeg,
@@ -303,8 +309,14 @@ const MezaScanner = (function() {
 
             const item = {
               id: qr.text,
+              rawText: qr.text,
               type: 'MicroQR',
               format: qr.format || 'MicroQRCode',
+              version: qr.version || 'M2',
+              ecLevel: qr.ecLevel || 'M',
+              bytes: qr.bytes,
+              symbology: qr.symbology || 'QRCode',
+              symbologyIdentifier: qr.symbologyIdentifier || ']Q1',
               corners,
               center: { x: cx, y: cy },
               angle: angleDeg,
@@ -361,6 +373,7 @@ const MezaScanner = (function() {
 
         const item = {
           id: marker.id,
+          rawText: String(marker.id),
           type: 'ArUco',
           format: currentDictionary,
           corners,
