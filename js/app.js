@@ -58,11 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentViewMode = 'dual';
 
   // --- 1. Populate Dictionaries ---
+  // Generator dictionaries (ArUco & AprilTag)
   MezaGenerator.DICTIONARY_OPTIONS.forEach(opt => {
-    const o1 = new Option(opt.label, opt.id);
-    const o2 = new Option(opt.label, opt.id);
-    dictSelect.appendChild(o1);
-    scanDictSelect.appendChild(o2);
+    dictSelect.appendChild(new Option(opt.label, opt.id));
+  });
+
+  // Scanner dictionaries (Auto-Detect, Micro QR Mezastar, and ArUco/AprilTag)
+  scanDictSelect.appendChild(new Option('⚡ Auto-Detect (ArUco + Micro QR Mezastar)', 'AUTO_DETECT'));
+  scanDictSelect.appendChild(new Option('🏷️ Tag Mezastar Asli (Micro QR Code)', 'MEZASTAR_MICRO_QR'));
+  MezaGenerator.DICTIONARY_OPTIONS.forEach(opt => {
+    scanDictSelect.appendChild(new Option(opt.label, opt.id));
   });
 
   // Populate Types
@@ -152,15 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   dictSelect.addEventListener('change', () => {
-    scanDictSelect.value = dictSelect.value;
-    MezaScanner.setDictionary(dictSelect.value);
     updateTagPreview();
   });
 
   scanDictSelect.addEventListener('change', () => {
-    dictSelect.value = scanDictSelect.value;
     MezaScanner.setDictionary(scanDictSelect.value);
-    updateTagPreview();
   });
 
   [markerIdInput, pkmnNameInput, pkmnDexInput, pkmnTypeSelect, pkmnStarsSelect,
@@ -327,14 +328,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const reader = new FileReader();
     reader.onload = (evt) => {
       const img = new Image();
-      img.onload = () => {
+      img.onload = async () => {
         MezaScanner.stopCamera();
         btnToggleCamera.textContent = '▶ Mulai Kamera';
         btnToggleCamera.classList.remove('btn-danger');
         btnToggleCamera.classList.add('btn-primary');
 
-        const found = MezaScanner.scanStaticImage(img);
-        showToast(`Scan gambar selesai: ${found.length} marker terdeteksi.`);
+        const found = await MezaScanner.scanStaticImage(img);
+        showToast(`Scan gambar selesai: ${found.length} marker/kode terdeteksi.`);
       };
       img.src = evt.target.result;
     };

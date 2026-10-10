@@ -1,4 +1,4 @@
-// MezaTag Scanner: Camera Feed, Image Upload, and Real-Time Fiducial Tracking
+// MezaTag Scanner: Camera Feed, Image Upload, and Real-Time Fiducial & Micro QR Tracking
 const MezaScanner = (function() {
   let videoEl = null;
   let displayCanvas = null;
@@ -9,9 +9,10 @@ const MezaScanner = (function() {
   let stream = null;
   let isRunning = false;
   let animationFrameId = null;
+  let isDetecting = false;
 
   let detector = null;
-  let currentDictionary = 'ARUCO_4X4_1000';
+  let currentDictionary = 'AUTO_DETECT'; // Default: auto-detect both ArUco and Mezastar Micro QR!
 
   // Tracking state
   let lastSeenIds = new Set();
@@ -30,15 +31,39 @@ const MezaScanner = (function() {
     hiddenCanvas = document.createElement('canvas');
     hiddenCtx = hiddenCanvas.getContext('2d', { willReadFrequently: true });
 
+    if (typeof ZXingWASM !== 'undefined' && ZXingWASM.prepareZXingModule) {
+      try {
+        ZXingWASM.prepareZXingModule({
+          overrides: {
+            locateFile: (p) => {
+              if (p && p.endsWith('.wasm')) return 'js/vendor/' + p;
+              return p;
+            }
+          }
+        });
+      } catch (e) {
+        console.warn('ZXing locateFile init:', e);
+      }
+    }
+
     setDictionary(options.dictionaryName || currentDictionary);
   }
 
   function setDictionary(dictName) {
     currentDictionary = dictName;
-    if (typeof AR !== 'undefined' && AR.Detector) {
-      detector = new AR.Detector({
-        dictionaryName: currentDictionary
-      });
+    if (dictName !== 'MEZASTAR_MICRO_QR' && dictName !== 'AUTO_DETECT') {
+      if (typeof AR !== 'undefined' && AR.Detector) {
+        detector = new AR.Detector({
+          dictionaryName: currentDictionary
+        });
+      }
+    } else {
+      // In auto or micro QR mode, use ARUCO_4X4 as backup ArUco dictionary
+      if (typeof AR !== 'undefined' && AR.Detector) {
+        detector = new AR.Detector({
+          dictionaryName: 'ARUCO_4X4_1000'
+        });
+      }
     }
   }
 
@@ -99,7 +124,7 @@ const MezaScanner = (function() {
   }
 
   // Real-time camera processing loop
-  function processFrame() {
+  async function processFrame() {
     if (!isRunning) return;
 
     if (videoEl.readyState === videoEl.HAVE_ENOUGH_DATA) {
@@ -117,9 +142,17 @@ const MezaScanner = (function() {
       displayCtx.drawImage(videoEl, 0, 0, vWidth, vHeight);
       hiddenCtx.drawImage(videoEl, 0, 0, vWidth, vHeight);
 
-      // Extract raw image data for detector
-      const imageData = hiddenCtx.getImageData(0, 0, vWidth, vHeight);
-      detectAndRender(imageData, vWidth, vHeight);
+      if (!isDetecting) {
+        isDetecting = true;
+        try {
+          const imageData = hiddenCtx.getImageData(0, 0, vWidth, vHeight);
+          await detectAndRender(imageData, vWidth, vHeight);
+        } catch (e) {
+          console.error('Frame detection error:', e);
+        } finally {
+          isDetecting = false;
+        }
+      }
 
       // Calculate FPS
       frameCount++;
@@ -135,7 +168,7 @@ const MezaScanner = (function() {
   }
 
   // Scan a static image file
-  function scanStaticImage(imgElement) {
+  async function scanStaticImage(imgElement) {
     const width = imgElement.naturalWidth || imgElement.width;
     const height = imgElement.naturalHeight || imgElement.height;
 
@@ -148,72 +181,133 @@ const MezaScanner = (function() {
     hiddenCtx.drawImage(imgElement, 0, 0, width, height);
 
     const imageData = hiddenCtx.getImageData(0, 0, width, height);
-    return detectAndRender(imageData, width, height);
+    return await detectAndRender(imageData, width, height);
   }
 
   // Core detection and AR overlay rendering
-  function detectAndRender(imageData, width, height) {
-    if (!detector) {
-      setDictionary(currentDictionary);
-    }
-
-    let markers = [];
-    try {
-      markers = detector.detect(imageData) || [];
-    } catch (e) {
-      console.error('Detection error:', e);
-      return [];
-    }
-
+  async function detectAndRender(imageData, width, height) {
     const processedMarkers = [];
     const currentSeenIds = new Set();
 
-    markers.forEach(marker => {
-      const corners = marker.corners;
-      if (!corners || corners.length < 4) return;
+    const shouldCheckQR = (currentDictionary === 'AUTO_DETECT' || currentDictionary === 'MEZASTAR_MICRO_QR');
+    const shouldCheckAruco = (currentDictionary !== 'MEZASTAR_MICRO_QR');
 
-      // 1. Calculate Center Coordinate (cx, cy)
-      const cx = (corners[0].x + corners[1].x + corners[2].y + corners[3].x) / 4;
-      const cy = (corners[0].y + corners[1].y + corners[2].y + corners[3].y) / 4;
+    // 1. Check for Micro QR Code / Mezastar Tag using ZXingWASM
+    if (shouldCheckQR && typeof ZXingWASM !== 'undefined' && ZXingWASM.readBarcodesFromImageData) {
+      try {
+        const qrList = await ZXingWASM.readBarcodesFromImageData(imageData, {
+          formats: ['MicroQRCode', 'QRCode', 'RMQRCode'],
+          tryHarder: true,
+          tryRotate: true,
+          tryInvert: true
+        });
 
-      // Actually, proper center:
-      const actualCx = (corners[0].x + corners[1].x + corners[2].x + corners[3].x) / 4;
-      const actualCy = (corners[0].y + corners[1].y + corners[2].y + corners[3].y) / 4;
+        if (qrList && qrList.length > 0) {
+          qrList.forEach(qr => {
+            const p = qr.position;
+            if (!p || !p.topLeft) return;
 
-      // 2. Calculate Angle / Rotation
-      const dx = corners[1].x - corners[0].x;
-      const dy = corners[1].y - corners[0].y;
-      let angleDeg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
-      if (angleDeg < 0) angleDeg += 360;
+            const corners = [
+              { x: p.topLeft.x, y: p.topLeft.y },
+              { x: p.topRight.x, y: p.topRight.y },
+              { x: p.bottomRight.x, y: p.bottomRight.y },
+              { x: p.bottomLeft.x, y: p.bottomLeft.y }
+            ];
 
-      // 3. Approximate physical size in pixels (top edge length)
-      const edgeLen = Math.round(Math.hypot(dx, dy));
+            const cx = (corners[0].x + corners[1].x + corners[2].x + corners[3].x) / 4;
+            const cy = (corners[0].y + corners[1].y + corners[2].y + corners[3].y) / 4;
 
-      // 4. Lookup Pokemon Data
-      const pokemon = MezaDB.getById(marker.id);
-      const tier = MezaDB.STAR_TIERS[pokemon.stars] || MezaDB.STAR_TIERS[5];
+            const dx = corners[1].x - corners[0].x;
+            const dy = corners[1].y - corners[0].y;
+            let angleDeg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
+            if (angleDeg < 0) angleDeg += 360;
 
-      const item = {
-        id: marker.id,
-        corners,
-        center: { x: actualCx, y: actualCy },
-        angle: angleDeg,
-        size: edgeLen,
-        pokemon,
-        tier
-      };
+            const edgeLen = Math.round(Math.hypot(dx, dy));
 
-      processedMarkers.push(item);
-      currentSeenIds.add(marker.id);
+            // Fetch Pokemon data
+            const pokemon = MezaDB.getById(qr.text);
+            const tier = MezaDB.STAR_TIERS[pokemon.stars] || MezaDB.STAR_TIERS[5];
 
-      // Play lock-on audio cue if newly detected
-      if (!lastSeenIds.has(marker.id)) {
-        MezaAudio.playScan();
+            const item = {
+              id: qr.text,
+              type: 'MicroQR',
+              format: qr.format || 'MicroQRCode',
+              corners,
+              center: { x: cx, y: cy },
+              angle: angleDeg,
+              size: edgeLen,
+              pokemon,
+              tier
+            };
+
+            processedMarkers.push(item);
+            currentSeenIds.add(String(qr.text));
+
+            if (!lastSeenIds.has(String(qr.text))) {
+              MezaAudio.playScan();
+            }
+
+            drawMarkerOverlay(displayCtx, item);
+          });
+        }
+      } catch (err) {
+        console.warn('ZXing error:', err);
+      }
+    }
+
+    // 2. Check for ArUco / AprilTag markers
+    if (shouldCheckAruco) {
+      if (!detector) {
+        setDictionary(currentDictionary);
       }
 
-      // Draw AR Overlays
-      drawMarkerOverlay(displayCtx, item);
-    });
+      let markers = [];
+      try {
+        if (detector) {
+          markers = detector.detect(imageData) || [];
+        }
+      } catch (e) {
+        console.warn('ArUco detection error:', e);
+      }
+
+      markers.forEach(marker => {
+        const corners = marker.corners;
+        if (!corners || corners.length < 4) return;
+
+        const actualCx = (corners[0].x + corners[1].x + corners[2].x + corners[3].x) / 4;
+        const actualCy = (corners[0].y + corners[1].y + corners[2].y + corners[3].y) / 4;
+
+        const dx = corners[1].x - corners[0].x;
+        const dy = corners[1].y - corners[0].y;
+        let angleDeg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
+        if (angleDeg < 0) angleDeg += 360;
+
+        const edgeLen = Math.round(Math.hypot(dx, dy));
+        const pokemon = MezaDB.getById(marker.id);
+        const tier = MezaDB.STAR_TIERS[pokemon.stars] || MezaDB.STAR_TIERS[5];
+
+        const item = {
+          id: marker.id,
+          type: 'ArUco',
+          format: currentDictionary,
+          corners,
+          center: { x: actualCx, y: actualCy },
+          angle: angleDeg,
+          size: edgeLen,
+          pokemon,
+          tier
+        };
+
+        processedMarkers.push(item);
+        currentSeenIds.add(String(marker.id));
+
+        if (!lastSeenIds.has(String(marker.id))) {
+          MezaAudio.playScan();
+        }
+
+        drawMarkerOverlay(displayCtx, item);
+      });
+    }
 
     lastSeenIds = currentSeenIds;
 
@@ -232,7 +326,7 @@ const MezaScanner = (function() {
 
   // Render Augmented Reality Visual Elements over detected marker
   function drawMarkerOverlay(ctx, item) {
-    const { corners, center, angle, pokemon, tier, id } = item;
+    const { corners, center, angle, pokemon, tier, id, format } = item;
 
     ctx.save();
 
@@ -297,8 +391,8 @@ const MezaScanner = (function() {
 
     // 4. Floating Holographic Info HUD
     const hudY = Math.min(corners[0].y, corners[1].y) - 20;
-    const hudW = 180;
-    const hudH = 50;
+    const hudW = 200;
+    const hudH = 54;
     const hudX = center.x - hudW / 2;
 
     ctx.beginPath();
@@ -319,12 +413,12 @@ const MezaScanner = (function() {
     ctx.fillStyle = tier.color;
     ctx.fillText(tier.stars, hudX + 10, hudY - hudH + 36);
 
-    // ID Badge on right
+    // ID Badge & Format on right
     ctx.font = 'bold 11px monospace';
     ctx.fillStyle = '#94A3B8';
     ctx.textAlign = 'right';
     ctx.fillText(`ID #${id}`, hudX + hudW - 10, hudY - hudH + 20);
-    ctx.fillText(`${angle}°`, hudX + hudW - 10, hudY - hudH + 36);
+    ctx.fillText(`${format || 'Tag'} | ${angle}°`, hudX + hudW - 10, hudY - hudH + 36);
 
     ctx.restore();
   }

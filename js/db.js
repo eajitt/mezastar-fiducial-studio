@@ -235,23 +235,25 @@ const MezaDB = (function() {
   }
 
   function getById(id) {
-    const found = currentCatalog.find(item => item.id === Number(id));
+    const strId = String(id);
+    const numId = Number(id);
+    const found = currentCatalog.find(item => item.id === numId || String(item.id) === strId || item.code === strId);
     if (found) return found;
 
-    // Fallback dynamic profile if custom marker ID not in catalog
+    // Fallback dynamic profile if custom marker or Mezastar QR code not in catalog
     return {
-      id: Number(id),
-      name: `Unknown #${id}`,
-      dex: `#${String(id).padStart(4, '0')}`,
-      stars: 3,
-      type: 'Normal',
-      hp: 150,
-      attack: 150,
-      defense: 150,
-      speed: 150,
-      move: 'Normal Tackle',
-      color: '#64748B',
-      spriteId: null
+      id: isNaN(numId) ? strId : numId,
+      code: strId,
+      name: `Mezastar #${strId.slice(-4) || strId}`,
+      dex: `#${strId.slice(-4) || '0000'}`,
+      stars: 5,
+      type: 'Dragon',
+      hp: 210,
+      attack: 230,
+      defense: 165,
+      speed: 195,
+      move: 'Mezastar Super Attack',
+      color: '#8B5CF6',
     };
   }
 
