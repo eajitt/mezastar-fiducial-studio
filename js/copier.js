@@ -18,6 +18,17 @@ const MezaCopier = (function() {
   // Symbol cache for rendering
   const symbolCache = new Map();
 
+  // Safe notification helper (avoids ReferenceError if showToast not yet loaded)
+  function notify(msg) {
+    if (typeof showToast === 'function') {
+      try { showToast(msg); } catch (e) {}
+    } else if (typeof window !== 'undefined' && typeof window.showToast === 'function') {
+      try { window.showToast(msg); } catch (e) {}
+    } else {
+      console.log(msg);
+    }
+  }
+
   // --- 1. Two-Way Converter Core Logic ---
   function parseFromHuman(series, index) {
     const sStr = String(series || '79').trim().padStart(2, '0').slice(-2);
@@ -169,7 +180,7 @@ const MezaCopier = (function() {
               <span style="color:var(--success); font-weight:600;">✨ Tag ini dijamin terbaca oleh sensor optik mesin arcade Mezastar!</span>
             </div>
           `;
-          showToast(`🧪 Uji Kelayakan Lolos: Tag #${state.payload} 100% Identik!`);
+          notify(`🧪 Uji Kelayakan Lolos: Tag #${state.payload} 100% Identik!`);
         } else {
           resultBox.innerHTML = `
             <div class="feasibility-status-badge error">
@@ -328,7 +339,7 @@ const MezaCopier = (function() {
         link.download = `Mezastar_MicroQR_${state.payload}.png`;
         link.href = hiResCanvas.toDataURL('image/png');
         link.click();
-        showToast(`📥 Micro QR [${state.payload}] diunduh!`);
+        notify(`📥 Micro QR [${state.payload}] diunduh!`);
       });
     }
 
@@ -351,7 +362,7 @@ const MezaCopier = (function() {
         transferToGenerator();
         const tabGen = document.querySelector('[data-tab="tab-generator"]');
         if (tabGen) tabGen.click();
-        showToast(`🎨 Tag #${state.payload} dimuat ke Tag Designer!`);
+        notify(`🎨 Tag #${state.payload} dimuat ke Tag Designer!`);
       });
     }
 
@@ -385,7 +396,7 @@ const MezaCopier = (function() {
         };
 
         MezaArena.updateMarkers([simMarker]);
-        showToast(`⚔️ Pokémon ${state.pokemonName} siap bertarung di Arena!`);
+        notify(`⚔️ Pokémon ${state.pokemonName} siap bertarung di Arena!`);
       });
     }
 

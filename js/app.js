@@ -808,6 +808,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 3000);
   }
+  window.showToast = showToast;
 
   // --- 8. App Startup ---
   refreshPokemonDropdown();
