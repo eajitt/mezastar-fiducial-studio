@@ -33,6 +33,9 @@
       <button class="nav-tab" data-tab="tab-database">
         <span>📂</span> Database Pokedex
       </button>
+      <button class="nav-tab" data-tab="tab-hex-nfc">
+        <span>🛠️</span> Hex & NFC Studio
+      </button>
     </nav>
 
     <!-- Header Actions -->
@@ -304,23 +307,181 @@
 
         <div id="db-grid" class="pokedex-grid"></div>
       </div>
+    <!-- ==================== TAB 5: HEX & NFC STUDIO ==================== -->
+    <section id="tab-hex-nfc" class="tab-pane">
+      <div class="two-col-grid">
+
+        <!-- Column 1: Smart Hex Converter & Web NFC -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+
+          <!-- Web NFC Tap Reader Panel -->
+          <div class="card-panel">
+            <div class="panel-header">
+              <h2 class="panel-title"><span>📱</span> Web NFC Tap Scanner (Mobile)</h2>
+              <span id="nfc-status-badge" class="telemetry-lbl" style="color:var(--accent);">Memeriksa...</span>
+            </div>
+
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px; line-height:1.5;">
+              Tempelkan kartu fisik (NFC / e-Money / NTAG215) ke bagian belakang HP Android untuk membaca UID heksadesimal secara langsung.
+            </p>
+
+            <button id="btn-start-nfc" class="btn btn-primary btn-block">
+              📡 Aktifkan Pemindaian NFC HP
+            </button>
+
+            <div id="nfc-result-box" style="margin-top:14px; padding:12px; background:var(--bg-input); border-radius:8px; border:1px solid var(--border); display:none;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span style="font-size:11px; color:var(--text-muted);">UID KARTU (HEX):</span>
+                <span id="nfc-tag-time" style="font-size:11px; color:var(--primary); font-family:var(--font-mono);"></span>
+              </div>
+              <div id="nfc-tag-uid" style="font-size:18px; font-weight:bold; font-family:var(--font-mono); color:var(--accent);"></div>
+              <div id="nfc-tag-ndef" style="font-size:11px; color:#A1A1AA; margin-top:4px; font-family:var(--font-mono);"></div>
+
+              <div style="margin-top:10px; display:flex; gap:8px;">
+                <button id="btn-nfc-to-hex" class="btn btn-sm" style="flex:1;">➡️ Salin ke Converter</button>
+                <button id="btn-nfc-to-game" class="btn btn-sm btn-success" style="flex:1;">🎮 Tautkan ke Game</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart Hex Converter (Bab 3) -->
+          <div class="card-panel">
+            <div class="panel-header">
+              <h2 class="panel-title"><span>🔄</span> Smart Data Converter (Bab 3)</h2>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Input String Heksadesimal</label>
+              <textarea id="hex-input-raw" class="form-input" rows="3" placeholder="Contoh: 01 A4 4B DB FE 5B B4 24 atau 79778762" style="font-family:var(--font-mono); font-size:13px;"></textarea>
+            </div>
+
+            <div style="display:flex; gap:8px; margin-bottom:14px;">
+              <button id="btn-hex-clean" class="btn btn-sm" style="flex:1;">🧹 Bersihkan Format</button>
+              <button id="btn-hex-convert" class="btn btn-sm btn-primary" style="flex:1;">⚡ Konversi Real-Time</button>
+            </div>
+
+            <!-- Conversion Results -->
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div class="hex-res-row">
+                <span class="hex-res-label">HEX SANITASI:</span>
+                <span id="res-hex-clean" class="hex-res-val">-</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">ASCII / TEKS:</span>
+                <span id="res-hex-ascii" class="hex-res-val">-</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">16-BIT INTEGER:</span>
+                <span id="res-hex-int16" class="hex-res-val">-</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">32-BIT INTEGER:</span>
+                <span id="res-hex-int32" class="hex-res-val">-</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">BINER (BITS):</span>
+                <span id="res-hex-bin" class="hex-res-val" style="font-size:11px;">-</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">UID BCC XOR:</span>
+                <span id="res-hex-bcc" class="hex-res-val">-</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column 2: Aburiz Monetary & Arcade Balance Formula Engine (Bab 2) -->
+        <div class="card-panel">
+          <div class="panel-header">
+            <h2 class="panel-title"><span>💰</span> Formula Moneter & Saldo Arcade (Bab 2)</h2>
+          </div>
+
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">
+            Implementasi rekayasa balik 16-byte formula saldo moneter, kartu wahana, dan koin arcade dari repositori <code>aburiz/NFC-Decryption</code>.
+          </p>
+
+          <!-- Mode 1: Dekripsi 16-Byte -->
+          <div style="background:var(--bg-input); padding:16px; border-radius:12px; border:1px solid var(--border); margin-bottom:20px;">
+            <h4 style="font-size:13px; color:var(--primary); margin-bottom:10px;">🔓 1. Dekripsi Blok Saldo 16-Byte</h4>
+            <div class="form-group">
+              <label class="form-label">Blok Heksadesimal (16 Byte)</label>
+              <input type="text" id="aburiz-decode-input" class="form-input" value="01 A4 4B DB FE 5B B4 24 01 A4 4B DB 04 FB 04 FB" style="font-family:var(--font-mono); font-size:12px;">
+            </div>
+            <button id="btn-aburiz-decode" class="btn btn-sm btn-primary" style="margin-bottom:12px;">Hitung Nilai Saldo</button>
+
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:12px;">
+              <div class="hex-res-row">
+                <span class="hex-res-label">NILAI ABURIZ:</span>
+                <span id="res-aburiz-val" class="hex-res-val" style="color:var(--accent); font-size:15px; font-weight:bold;">420.75</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">NILAI LITTLE-ENDIAN:</span>
+                <span id="res-aburiz-le" class="hex-res-val">164.75</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">STATUS MARK BYTE:</span>
+                <span id="res-aburiz-mark" class="hex-res-val">Debit Transit / Wahana Aktif (0xDB)</span>
+              </div>
+              <div class="hex-res-row">
+                <span class="hex-res-label">INTEGRITAS DATA:</span>
+                <span id="res-aburiz-valid" class="hex-res-val" style="color:var(--success);">✅ VALID (Inverted Checksum Cocok)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mode 2: Enkripsi Saldo Baru -->
+          <div style="background:var(--bg-input); padding:16px; border-radius:12px; border:1px solid var(--border);">
+            <h4 style="font-size:13px; color:var(--accent); margin-bottom:10px;">🔐 2. Enkripsi Saldo / Koin Arcade Baru</h4>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nominal Saldo / Koin</label>
+                <input type="number" id="aburiz-encode-val" class="form-input" value="150.00" step="0.25">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mark Byte Status</label>
+                <select id="aburiz-encode-mark" class="form-select">
+                  <option value="219">0xDB (Debit Wahana / Transit)</option>
+                  <option value="1">0x01 (POS Standar Merchant)</option>
+                  <option value="27">0x1B (Tier Privilege)</option>
+                  <option value="6">0x06 (Audit Counter)</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="btn-aburiz-encode" class="btn btn-sm btn-success" style="margin-bottom:12px;">Enkripsi ke 16-Byte Block</button>
+
+            <div class="form-group">
+              <label class="form-label">Hasil 16-Byte Payload (Siap Tulis / QR):</label>
+              <input type="text" id="res-encode-hex" class="form-input" readonly style="font-family:var(--font-mono); font-size:12px; color:var(--accent);">
+            </div>
+
+            <button id="btn-send-to-generator" class="btn btn-block btn-primary">
+              ⚡ Buat Tag Mezastar dari Hex Payload Ini
+            </button>
+          </div>
+
+        </div>
+
+      </div>
     </section>
 
   </main>
 
   <!-- Vendor Libraries -->
-  <script src="js/vendor/cv.js?v=1.2.0"></script>
-  <script src="js/vendor/aruco.js?v=1.2.0"></script>
-  <script src="js/vendor/dictionaries.js?v=1.2.0"></script>
-  <script src="js/vendor/zxing-reader.js?v=1.2.0"></script>
+  <script src="js/vendor/cv.js?v=1.3.0"></script>
+  <script src="js/vendor/aruco.js?v=1.3.0"></script>
+  <script src="js/vendor/dictionaries.js?v=1.3.0"></script>
+  <script src="js/vendor/zxing-reader.js?v=1.3.0"></script>
 
   <!-- App Modules -->
-  <script src="js/db.js?v=1.2.0"></script>
-  <script src="js/audio.js?v=1.2.0"></script>
-  <script src="js/generator.js?v=1.2.0"></script>
-  <script src="js/scanner.js?v=1.2.0"></script>
-  <script src="js/arena.js?v=1.2.0"></script>
-  <script src="js/app.js?v=1.2.0"></script>
+  <script src="js/db.js?v=1.3.0"></script>
+  <script src="js/audio.js?v=1.3.0"></script>
+  <script src="js/hex_nfc.js?v=1.3.0"></script>
+  <script src="js/generator.js?v=1.3.0"></script>
+  <script src="js/scanner.js?v=1.3.0"></script>
+  <script src="js/arena.js?v=1.3.0"></script>
+  <script src="js/app.js?v=1.3.0"></script>
 
 </body>
 </html>

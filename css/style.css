@@ -418,6 +418,32 @@ body {
   margin-top: 20px;
 }
 
+/* Hex & NFC Studio Helpers */
+.hex-res-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 12px;
+  background: var(--bg-card);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.hex-res-label {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.hex-res-val {
+  color: var(--text-main);
+  font-weight: 700;
+  word-break: break-all;
+  text-align: right;
+}
+
 .detected-card-row {
   display: flex;
   align-items: center;

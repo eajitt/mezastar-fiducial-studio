@@ -543,4 +543,168 @@ document.addEventListener('DOMContentLoaded', () => {
   arenaCanvas.width = 960;
   arenaCanvas.height = 600;
   MezaArena.init(arenaCanvas);
+
+  // --- 9. Hex & NFC Studio Bindings (Adapted from DOKUMENTASI_TEKNIS_HEXADECIMAL.md) ---
+  const nfcBadge = document.getElementById('nfc-status-badge');
+  const btnStartNfc = document.getElementById('btn-start-nfc');
+  const nfcResultBox = document.getElementById('nfc-result-box');
+  const nfcTagUid = document.getElementById('nfc-tag-uid');
+  const nfcTagTime = document.getElementById('nfc-tag-time');
+  const nfcTagNdef = document.getElementById('nfc-tag-ndef');
+  const btnNfcToHex = document.getElementById('btn-nfc-to-hex');
+  const btnNfcToGame = document.getElementById('btn-nfc-to-game');
+
+  const hexInputRaw = document.getElementById('hex-input-raw');
+  const btnHexClean = document.getElementById('btn-hex-clean');
+  const btnHexConvert = document.getElementById('btn-hex-convert');
+  const resHexClean = document.getElementById('res-hex-clean');
+  const resHexAscii = document.getElementById('res-hex-ascii');
+  const resHexInt16 = document.getElementById('res-hex-int16');
+  const resHexInt32 = document.getElementById('res-hex-int32');
+  const resHexBin = document.getElementById('res-hex-bin');
+  const resHexBcc = document.getElementById('res-hex-bcc');
+
+  const aburizDecodeInput = document.getElementById('aburiz-decode-input');
+  const btnAburizDecode = document.getElementById('btn-aburiz-decode');
+  const resAburizVal = document.getElementById('res-aburiz-val');
+  const resAburizLe = document.getElementById('res-aburiz-le');
+  const resAburizMark = document.getElementById('res-aburiz-mark');
+  const resAburizValid = document.getElementById('res-aburiz-valid');
+
+  const aburizEncodeVal = document.getElementById('aburiz-encode-val');
+  const aburizEncodeMark = document.getElementById('aburiz-encode-mark');
+  const btnAburizEncode = document.getElementById('btn-aburiz-encode');
+  const resEncodeHex = document.getElementById('res-encode-hex');
+  const btnSendToGenerator = document.getElementById('btn-send-to-generator');
+
+  // Check Web NFC support
+  if (MezaHexNFC && MezaHexNFC.isWebNfcSupported()) {
+    nfcBadge.textContent = '🟢 Web NFC Didukung';
+    nfcBadge.style.color = 'var(--success)';
+  } else {
+    nfcBadge.textContent = 'ℹ️ Perlu Android Chrome';
+    nfcBadge.style.color = '#94A3B8';
+  }
+
+  // NFC Scanner
+  btnStartNfc.addEventListener('click', async () => {
+    MezaAudio.playClick();
+    try {
+      btnStartNfc.textContent = '⏳ Menunggu Tap Kartu...';
+      await MezaHexNFC.startWebNfcScan();
+      showToast('Pemindai NFC aktif! Tempelkan kartu ke punggung HP.');
+    } catch (err) {
+      alert(`NFC Error: ${err.message}`);
+      btnStartNfc.textContent = '📡 Aktifkan Pemindaian NFC HP';
+    }
+  });
+
+  MezaHexNFC.onNfcTagDetected((tag) => {
+    MezaAudio.playScan();
+    nfcResultBox.style.display = 'block';
+    nfcTagUid.textContent = tag.uid;
+    nfcTagTime.textContent = tag.timestamp;
+    nfcTagNdef.textContent = tag.ndefText ? `NDEF Payload: ${tag.ndefText}` : 'Tidak ada NDEF (Kartu Standar)';
+    showToast(`Kartu NFC Terdeteksi! UID: ${tag.uid}`);
+  });
+
+  btnNfcToHex.addEventListener('click', () => {
+    MezaAudio.playClick();
+    hexInputRaw.value = nfcTagUid.textContent;
+    runHexConversion();
+    showToast('UID disalin ke Hex Converter!');
+  });
+
+  btnNfcToGame.addEventListener('click', () => {
+    MezaAudio.playClick();
+    const uid = nfcTagUid.textContent;
+    markerIdInput.value = parseInt(uid.slice(0, 6), 16) % 1000 || 0;
+    pkmnNameInput.value = `NFC Tag #${uid.slice(-4)}`;
+    updateTagPreview();
+    document.querySelector('[data-tab="tab-generator"]').click();
+    showToast(`UID ${uid} berhasil ditautkan ke Generator!`);
+  });
+
+  // Smart Hex Converter logic
+  function runHexConversion() {
+    const raw = hexInputRaw.value.trim();
+    if (!raw) return;
+
+    const clean = MezaHexNFC.sanitizeHex(raw);
+    const ascii = MezaHexNFC.hexToAscii(raw);
+    const ints = MezaHexNFC.hexToIntegers(raw);
+
+    resHexClean.textContent = clean || '-';
+    resHexAscii.textContent = ascii || '-';
+    resHexInt16.textContent = ints.int16BE !== null ? `BE: ${ints.int16BE} | LE: ${ints.int16LE}` : '-';
+    resHexInt32.textContent = ints.int32BE !== null ? `BE: ${ints.int32BE} | LE: ${ints.int32LE}` : '-';
+    resHexBin.textContent = ints.binary || '-';
+    resHexBcc.textContent = ints.bccHex ? `0x${ints.bccHex}` : '-';
+  }
+
+  btnHexClean.addEventListener('click', () => {
+    MezaAudio.playClick();
+    hexInputRaw.value = MezaHexNFC.sanitizeHex(hexInputRaw.value);
+    runHexConversion();
+  });
+
+  btnHexConvert.addEventListener('click', () => {
+    MezaAudio.playClick();
+    runHexConversion();
+  });
+
+  hexInputRaw.addEventListener('input', runHexConversion);
+
+  // Aburiz Monetary Formula: Decode
+  function runAburizDecode() {
+    const raw = aburizDecodeInput.value.trim();
+    try {
+      const res = MezaHexNFC.decodeAburizBlock(raw);
+      resAburizVal.textContent = res.aburizValue.toFixed(2);
+      resAburizLe.textContent = res.littleEndianValue.toFixed(2);
+      resAburizMark.textContent = res.markDesc;
+      if (res.isChecksumValid) {
+        resAburizValid.textContent = '✅ VALID (Inverted Checksum Cocok)';
+        resAburizValid.style.color = 'var(--success)';
+      } else {
+        resAburizValid.textContent = '❌ INVALID (Checksum Tidak Sesuai)';
+        resAburizValid.style.color = 'var(--danger)';
+      }
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  btnAburizDecode.addEventListener('click', () => {
+    MezaAudio.playClick();
+    runAburizDecode();
+  });
+
+  // Aburiz Monetary Formula: Encode
+  function runAburizEncode() {
+    const val = parseFloat(aburizEncodeVal.value) || 0;
+    const mark = parseInt(aburizEncodeMark.value, 10) || 0xDB;
+    const res = MezaHexNFC.encodeAburizBlock(val, mark, 0x04);
+    resEncodeHex.value = res.hexFormatted;
+  }
+
+  btnAburizEncode.addEventListener('click', () => {
+    MezaAudio.playClick();
+    runAburizEncode();
+    showToast('Berhasil mengenkripsi 16-byte block!');
+  });
+
+  // Initial encode run
+  runAburizEncode();
+
+  btnSendToGenerator.addEventListener('click', () => {
+    MezaAudio.playClick();
+    const hex = resEncodeHex.value.replace(/\s+/g, '');
+    const numId = parseInt(hex.slice(0, 4), 16) % 1000;
+    markerIdInput.value = numId;
+    pkmnNameInput.value = `Arcade Coin Val: ${aburizEncodeVal.value}`;
+    updateTagPreview();
+    document.querySelector('[data-tab="tab-generator"]').click();
+    showToast('Payload berhasil ditautkan ke Generator!');
+  });
 });
