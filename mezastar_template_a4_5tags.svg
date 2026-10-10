@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="210mm" height="297mm" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+  <title>Mezastar Template A4 - 5 Tags (1:1 Physical Scale)</title>
+  <style>
+    .title { font-family: 'Helvetica', 'Arial', sans-serif; font-weight: bold; font-size: 3.5px; fill: #111; }
+    .sub { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 2.2px; fill: #444; }
+    .header-col { font-family: 'Helvetica', 'Arial', sans-serif; font-weight: bold; font-size: 2.8px; fill: #1a4a8d; }
+    .tag-title { font-family: 'Helvetica', 'Arial', sans-serif; font-weight: bold; font-size: 3.2px; fill: #fff; }
+    .tag-sub { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 2.0px; fill: #ddd; }
+    .tag-hex { font-family: 'Courier', monospace; font-weight: bold; font-size: 2.2px; fill: #ffdf40; }
+  </style>
+  <rect width="210" height="297" fill="#ffffff" />
+  <text x="15" y="14" class="title">TEMPLATE MEZASTAR RESMI (SKALA FISIK 1:1) - 5 TAGS SIAP CETAK A4</text>
+  <text x="15" y="18.5" class="sub">Ukuran Fisik Presisi: Lebar 64.0 mm x Tinggi 36.0 mm (Radius Ujung 18.0 mm) | Sisi Depan &amp; Belakang (Micro QR M2)</text>
+  <text x="15" y="22.5" class="sub">Petunjuk Cetak: Pilih opsi "Actual Size" / Skala 100% pada printer. Potong mengikuti garis hitam solid luar.</text>
+  <g id="ruler" stroke="#000" stroke-width="0.18">
+    <line x1="15" y1="32" x2="115" y2="32" />
+    <line x1="15" y1="32" x2="15" y2="27.5" />
+    <text x="14.2" y="26" font-size="2" font-family="sans-serif">0</text>
+    <line x1="16" y1="32" x2="16" y2="30.2" />
+    <line x1="17" y1="32" x2="17" y2="30.2" />
+    <line x1="18" y1="32" x2="18" y2="30.2" />
+    <line x1="19" y1="32" x2="19" y2="30.2" />
+    <line x1="20" y1="32" x2="20" y2="29" />
+    <line x1="21" y1="32" x2="21" y2="30.2" />
+    <line x1="22" y1="32" x2="22" y2="30.2" />
+    <line x1="23" y1="32" x2="23" y2="30.2" />
+    <line x1="24" y1="32" x2="24" y2="30.2" />
+    <line x1="25" y1="32" x2="25" y2="27.5" />
+    <text x="24.2" y="26" font-size="2" font-family="sans-serif">1</text>
+    <line x1="26" y1="32" x2="26" y2="30.2" />
+    <line x1="27" y1="32" x2="27" y2="30.2" />
+    <line x1="28" y1="32" x2="28" y2="30.2" />
+    <line x1="29" y1="32" x2="29" y2="30.2" />
+    <line x1="30" y1="32" x2="30" y2="29" />
+    <line x1="31" y1="32" x2="31" y2="30.2" />
+    <line x1="32" y1="32" x2="32" y2="30.2" />
+    <line x1="33" y1="32" x2="33" y2="30.2" />
+    <line x1="34" y1="32" x2="34" y2="30.2" />
+    <line x1="35" y1="32" x2="35" y2="27.5" />
+    <text x="34.2" y="26" font-size="2" font-family="sans-serif">2</text>
+    <line x1="36" y1="32" x2="36" y2="30.2" />
+    <line x1="37" y1="32" x2="37" y2="30.2" />
+    <line x1="38" y1="32" x2="38" y2="30.2" />
+    <line x1="39" y1="32" x2="39" y2="30.2" />
+    <line x1="40" y1="32" x2="40" y2="29" />
+    <line x1="41" y1="32" x2="41" y2="30.2" />
+    <line x1="42" y1="32" x2="42" y2="30.2" />
+    <line x1="43" y1="32" x2="43" y2="30.2" />
+    <line x1="44" y1="32" x2="44" y2="30.2" />
+    <line x1="45" y1="32" x2="45" y2="27.5" />
+    <text x="44.2" y="26" font-size="2" font-family="sans-serif">3</text>
+    <line x1="46" y1="32" x2="46" y2="30.2" />
+    <line x1="47" y1="32" x2="47" y2="30.2" />
+    <line x1="48" y1="32" x2="48" y2="30.2" />
+    <line x1="49" y1="32" x2="49" y2="30.2" />
+    <line x1="50" y1="32" x2="50" y2="29" />
+    <line x1="51" y1="32" x2="51" y2="30.2" />
+    <line x1="52" y1="32" x2="52" y2="30.2" />
+    <line x1="53" y1="32" x2="53" y2="30.2" />
+    <line x1="54" y1="32" x2="54" y2="30.2" />
+    <line x1="55" y1="32" x2="55" y2="27.5" />
+    <text x="54.2" y="26" font-size="2" font-family="sans-serif">4</text>
+    <line x1="56" y1="32" x2="56" y2="30.2" />
+    <line x1="57" y1="32" x2="57" y2="30.2" />
+    <line x1="58" y1="32" x2="58" y2="30.2" />
+    <line x1="59" y1="32" x2="59" y2="30.2" />
+    <line x1="60" y1="32" x2="60" y2="29" />
+    <line x1="61" y1="32" x2="61" y2="30.2" />
+    <line x1="62" y1="32" x2="62" y2="30.2" />
+    <line x1="63" y1="32" x2="63" y2="30.2" />
+    <line x1="64" y1="32" x2="64" y2="30.2" />
+    <line x1="65" y1="32" x2="65" y2="27.5" />
+    <text x="64.2" y="26" font-size="2" font-family="sans-serif">5</text>
+    <line x1="66" y1="32" x2="66" y2="30.2" />
+    <line x1="67" y1="32" x2="67" y2="30.2" />
+    <line x1="68" y1="32" x2="68" y2="30.2" />
+    <line x1="69" y1="32" x2="69" y2="30.2" />
+    <line x1="70" y1="32" x2="70" y2="29" />
+    <line x1="71" y1="32" x2="71" y2="30.2" />
+    <line x1="72" y1="32" x2="72" y2="30.2" />
+    <line x1="73" y1="32" x2="73" y2="30.2" />
+    <line x1="74" y1="32" x2="74" y2="30.2" />
+    <line x1="75" y1="32" x2="75" y2="27.5" />
+    <text x="74.2" y="26" font-size="2" font-family="sans-serif">6</text>
+    <line x1="76" y1="32" x2="76" y2="30.2" />
+    <line x1="77" y1="32" x2="77" y2="30.2" />
+    <line x1="78" y1="32" x2="78" y2="30.2" />
+    <line x1="79" y1="32" x2="79" y2="30.2" />
+    <line x1="80" y1="32" x2="80" y2="29" />
+    <line x1="81" y1="32" x2="81" y2="30.2" />
+    <line x1="82" y1="32" x2="82" y2="30.2" />
+    <line x1="83" y1="32" x2="83" y2="30.2" />
+    <line x1="84" y1="32" x2="84" y2="30.2" />
+    <line x1="85" y1="32" x2="85" y2="27.5" />
+    <text x="84.2" y="26" font-size="2" font-family="sans-serif">7</text>
+    <line x1="86" y1="32" x2="86" y2="30.2" />
+    <line x1="87" y1="32" x2="87" y2="30.2" />
+    <line x1="88" y1="32" x2="88" y2="30.2" />
+    <line x1="89" y1="32" x2="89" y2="30.2" />
+    <line x1="90" y1="32" x2="90" y2="29" />
+    <line x1="91" y1="32" x2="91" y2="30.2" />
+    <line x1="92" y1="32" x2="92" y2="30.2" />
+    <line x1="93" y1="32" x2="93" y2="30.2" />
+    <line x1="94" y1="32" x2="94" y2="30.2" />
+    <line x1="95" y1="32" x2="95" y2="27.5" />
+    <text x="94.2" y="26" font-size="2" font-family="sans-serif">8</text>
+    <line x1="96" y1="32" x2="96" y2="30.2" />
+    <line x1="97" y1="32" x2="97" y2="30.2" />
+    <line x1="98" y1="32" x2="98" y2="30.2" />
+    <line x1="99" y1="32" x2="99" y2="30.2" />
+    <line x1="100" y1="32" x2="100" y2="29" />
+    <line x1="101" y1="32" x2="101" y2="30.2" />
+    <line x1="102" y1="32" x2="102" y2="30.2" />
+    <line x1="103" y1="32" x2="103" y2="30.2" />
+    <line x1="104" y1="32" x2="104" y2="30.2" />
+    <line x1="105" y1="32" x2="105" y2="27.5" />
+    <text x="104.2" y="26" font-size="2" font-family="sans-serif">9</text>
+    <line x1="106" y1="32" x2="106" y2="30.2" />
+    <line x1="107" y1="32" x2="107" y2="30.2" />
+    <line x1="108" y1="32" x2="108" y2="30.2" />
+    <line x1="109" y1="32" x2="109" y2="30.2" />
+    <line x1="110" y1="32" x2="110" y2="29" />
+    <line x1="111" y1="32" x2="111" y2="30.2" />
+    <line x1="112" y1="32" x2="112" y2="30.2" />
+    <line x1="113" y1="32" x2="113" y2="30.2" />
+    <line x1="114" y1="32" x2="114" y2="30.2" />
+    <line x1="115" y1="32" x2="115" y2="27.5" />
+    <text x="114.2" y="26" font-size="2" font-family="sans-serif">10</text>
+    <text x="15" y="35.5" font-size="1.8" font-family="sans-serif" font-weight="bold">PENGGARIS KALIBRASI 1:1 (PASTIKAN PANJANG = TEPAT 10.0 CM SETELAH DICETAK)</text>
+  </g>
+  <text x="22" y="42" class="header-col">KOLOM A: SISI DEPAN (STIKER ART)</text>
+  <text x="114" y="42" class="header-col">KOLOM B: SISI BELAKANG (MICRO QR SCANNER)</text>
+  <!-- TAG #1 FRONT -->
+  <path d="M 40 46 L 68 46 A 18 18 0 0 1 68 82 L 40 82 A 18 18 0 0 1 40 46 Z" fill="rgb(38, 31, 13)" stroke="#000" stroke-width="0.3" />
+  <rect x="29" y="48.25" width="50" height="31.5" rx="9" fill="rgb(242, 191, 26)" />
+  <text x="37" y="54.75" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">POKEMON MEZASTAR</text>
+  <text x="37" y="64.75" font-size="4" font-weight="bold" fill="#111" font-family="sans-serif">PIKACHU</text>
+  <text x="37" y="69.25" font-size="2.2" fill="#222" font-family="sans-serif">ELECTRIC  |  POKENE 130</text>
+  <text x="37" y="73.25" font-size="2.2" font-weight="bold" fill="#111" font-family="sans-serif">MOVE: Volt Tackle</text>
+  <!-- TAG #1 BACK -->
+  <path d="M 132 46 L 160 46 A 18 18 0 0 1 160 82 L 132 82 A 18 18 0 0 1 132 46 Z" fill="#1d1d21" stroke="#000" stroke-width="0.3" />
+  <rect x="121" y="48.25" width="50" height="31.5" rx="9" fill="none" stroke="#666" stroke-dasharray="0.8, 0.6" stroke-width="0.2" />
+  <text x="120.5" y="55.5" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">MEZASTAR TAG</text>
+  <text x="120.5" y="60.5" font-size="3.0" font-weight="bold" fill="#fff" font-family="sans-serif">PIKACHU</text>
+  <text x="120.5" y="64.5" font-size="2.0" fill="#ccc" font-family="sans-serif">GRADE: 5 STAR</text>
+  <text x="120.5" y="68" font-size="2.0" fill="#ccc" font-family="sans-serif">SERIES: 79</text>
+  <text x="120.5" y="72.5" font-size="2.3" font-weight="bold" fill="#ffdf40" font-family="monospace">HEX: 79 77 87 62</text>
+  <rect x="156.5" y="56.5" width="15" height="15" fill="#fff" stroke="#999" stroke-width="0.1" />
+  <rect x="158.26" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="58.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="59.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="59.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="59.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="59.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="59.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="60.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="60.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="60.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="60.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="60.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="60.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="60.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="60.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="60.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="60.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="60.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="60.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="60.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="60.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="61.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="61.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="61.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="61.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="61.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="61.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="61.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="62.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="62.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="62.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="62.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="62.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="62.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="63.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="64.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="64.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="64.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="65.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="66.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="66.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="66.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="66.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="66.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="67.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="67.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="67.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="67.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="67.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="67.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="67.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="67.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="68.85" width="0.90" height="0.90" fill="#000" />
+  <!-- TAG #2 FRONT -->
+  <path d="M 40 94 L 68 94 A 18 18 0 0 1 68 130 L 40 130 A 18 18 0 0 1 40 94 Z" fill="rgb(26, 26, 31)" stroke="#000" stroke-width="0.3" />
+  <rect x="29" y="96.25" width="50" height="31.5" rx="9" fill="rgb(13, 166, 102)" />
+  <text x="37" y="102.75" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">POKEMON MEZASTAR</text>
+  <text x="37" y="112.75" font-size="4" font-weight="bold" fill="#111" font-family="sans-serif">RAYQUAZA</text>
+  <text x="37" y="117.25" font-size="2.2" fill="#222" font-family="sans-serif">DRAGON  |  POKENE 160</text>
+  <text x="37" y="121.25" font-size="2.2" font-weight="bold" fill="#111" font-family="sans-serif">MOVE: Dragon Ascent</text>
+  <!-- TAG #2 BACK -->
+  <path d="M 132 94 L 160 94 A 18 18 0 0 1 160 130 L 132 130 A 18 18 0 0 1 132 94 Z" fill="#1d1d21" stroke="#000" stroke-width="0.3" />
+  <rect x="121" y="96.25" width="50" height="31.5" rx="9" fill="none" stroke="#666" stroke-dasharray="0.8, 0.6" stroke-width="0.2" />
+  <text x="120.5" y="103.5" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">MEZASTAR TAG</text>
+  <text x="120.5" y="108.5" font-size="3.0" font-weight="bold" fill="#fff" font-family="sans-serif">RAYQUAZA</text>
+  <text x="120.5" y="112.5" font-size="2.0" fill="#ccc" font-family="sans-serif">GRADE: 6 STAR</text>
+  <text x="120.5" y="116" font-size="2.0" fill="#ccc" font-family="sans-serif">SERIES: 81</text>
+  <text x="120.5" y="120.5" font-size="2.3" font-weight="bold" fill="#ffdf40" font-family="monospace">HEX: 81 88 20 01</text>
+  <rect x="156.5" y="104.5" width="15" height="15" fill="#fff" stroke="#999" stroke-width="0.1" />
+  <rect x="158.26" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="106.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="107.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="107.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="107.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="107.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="108.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="108.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="108.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="108.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="108.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="108.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="108.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="109.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="109.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="109.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="109.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="109.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="109.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="109.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="110.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="110.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="110.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="110.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="110.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="111.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="112.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="112.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="113.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="114.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="115.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="115.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="115.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="115.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="115.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="115.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="115.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="115.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="115.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="115.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="115.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="115.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="115.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="116.85" width="0.90" height="0.90" fill="#000" />
+  <!-- TAG #3 FRONT -->
+  <path d="M 40 142 L 68 142 A 18 18 0 0 1 68 178 L 40 178 A 18 18 0 0 1 40 142 Z" fill="rgb(26, 26, 31)" stroke="#000" stroke-width="0.3" />
+  <rect x="29" y="144.25" width="50" height="31.5" rx="9" fill="rgb(230, 89, 26)" />
+  <text x="37" y="150.75" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">POKEMON MEZASTAR</text>
+  <text x="37" y="160.75" font-size="4" font-weight="bold" fill="#111" font-family="sans-serif">CHARIZARD</text>
+  <text x="37" y="165.25" font-size="2.2" fill="#222" font-family="sans-serif">FIRE  |  POKENE 155</text>
+  <text x="37" y="169.25" font-size="2.2" font-weight="bold" fill="#111" font-family="sans-serif">MOVE: Blast Burn</text>
+  <!-- TAG #3 BACK -->
+  <path d="M 132 142 L 160 142 A 18 18 0 0 1 160 178 L 132 178 A 18 18 0 0 1 132 142 Z" fill="#1d1d21" stroke="#000" stroke-width="0.3" />
+  <rect x="121" y="144.25" width="50" height="31.5" rx="9" fill="none" stroke="#666" stroke-dasharray="0.8, 0.6" stroke-width="0.2" />
+  <text x="120.5" y="151.5" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">MEZASTAR TAG</text>
+  <text x="120.5" y="156.5" font-size="3.0" font-weight="bold" fill="#fff" font-family="sans-serif">CHARIZARD</text>
+  <text x="120.5" y="160.5" font-size="2.0" fill="#ccc" font-family="sans-serif">GRADE: 6 STAR</text>
+  <text x="120.5" y="164" font-size="2.0" fill="#ccc" font-family="sans-serif">SERIES: 81</text>
+  <text x="120.5" y="168.5" font-size="2.3" font-weight="bold" fill="#ffdf40" font-family="monospace">HEX: 81 77 50 06</text>
+  <rect x="156.5" y="152.5" width="15" height="15" fill="#fff" stroke="#999" stroke-width="0.1" />
+  <rect x="158.26" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="154.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="155.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="155.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="155.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="155.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="155.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="156.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="156.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="157.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="157.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="157.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="157.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="157.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="157.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="157.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="158.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="158.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="158.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="158.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="158.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="158.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="158.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="159.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="160.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="160.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="160.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="161.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="162.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="162.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="162.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="162.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="162.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="162.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="162.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="163.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="163.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="163.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="163.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="163.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="163.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="163.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="164.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="164.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="164.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="164.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="164.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="164.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="164.85" width="0.90" height="0.90" fill="#000" />
+  <!-- TAG #4 FRONT -->
+  <path d="M 40 190 L 68 190 A 18 18 0 0 1 68 226 L 40 226 A 18 18 0 0 1 40 190 Z" fill="rgb(26, 26, 31)" stroke="#000" stroke-width="0.3" />
+  <rect x="29" y="192.25" width="50" height="31.5" rx="9" fill="rgb(166, 64, 191)" />
+  <text x="37" y="198.75" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">POKEMON MEZASTAR</text>
+  <text x="37" y="208.75" font-size="4" font-weight="bold" fill="#111" font-family="sans-serif">MEWTWO</text>
+  <text x="37" y="213.25" font-size="2.2" fill="#222" font-family="sans-serif">PSYCHIC  |  POKENE 158</text>
+  <text x="37" y="217.25" font-size="2.2" font-weight="bold" fill="#111" font-family="sans-serif">MOVE: Psystrike</text>
+  <!-- TAG #4 BACK -->
+  <path d="M 132 190 L 160 190 A 18 18 0 0 1 160 226 L 132 226 A 18 18 0 0 1 132 190 Z" fill="#1d1d21" stroke="#000" stroke-width="0.3" />
+  <rect x="121" y="192.25" width="50" height="31.5" rx="9" fill="none" stroke="#666" stroke-dasharray="0.8, 0.6" stroke-width="0.2" />
+  <text x="120.5" y="199.5" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">MEZASTAR TAG</text>
+  <text x="120.5" y="204.5" font-size="3.0" font-weight="bold" fill="#fff" font-family="sans-serif">MEWTWO</text>
+  <text x="120.5" y="208.5" font-size="2.0" fill="#ccc" font-family="sans-serif">GRADE: 6 STAR</text>
+  <text x="120.5" y="212" font-size="2.0" fill="#ccc" font-family="sans-serif">SERIES: 80</text>
+  <text x="120.5" y="216.5" font-size="2.3" font-weight="bold" fill="#ffdf40" font-family="monospace">HEX: 80 99 11 50</text>
+  <rect x="156.5" y="200.5" width="15" height="15" fill="#fff" stroke="#999" stroke-width="0.1" />
+  <rect x="158.26" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="202.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="203.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="203.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="203.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="203.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="204.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="204.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="204.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="204.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="204.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="204.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="204.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="204.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="205.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="206.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="206.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="206.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="206.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="206.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="206.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="207.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="208.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="208.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="209.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="209.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="209.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="209.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="209.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="209.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="210.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="210.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="210.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="210.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="210.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="210.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="210.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="211.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="211.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="211.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="211.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="211.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="211.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="211.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="212.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="212.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="212.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="212.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="212.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="212.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="212.85" width="0.90" height="0.90" fill="#000" />
+  <!-- TAG #5 FRONT -->
+  <path d="M 40 238 L 68 238 A 18 18 0 0 1 68 274 L 40 274 A 18 18 0 0 1 40 238 Z" fill="rgb(38, 38, 46)" stroke="#000" stroke-width="0.3" />
+  <rect x="29" y="240.25" width="50" height="31.5" rx="9" fill="rgb(51, 128, 204)" />
+  <text x="37" y="246.75" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">POKEMON MEZASTAR</text>
+  <text x="37" y="256.75" font-size="4" font-weight="bold" fill="#111" font-family="sans-serif">LUCARIO</text>
+  <text x="37" y="261.25" font-size="2.2" fill="#222" font-family="sans-serif">FIGHTING  |  POKENE 140</text>
+  <text x="37" y="265.25" font-size="2.2" font-weight="bold" fill="#111" font-family="sans-serif">MOVE: Aura Sphere</text>
+  <!-- TAG #5 BACK -->
+  <path d="M 132 238 L 160 238 A 18 18 0 0 1 160 274 L 132 274 A 18 18 0 0 1 132 238 Z" fill="#1d1d21" stroke="#000" stroke-width="0.3" />
+  <rect x="121" y="240.25" width="50" height="31.5" rx="9" fill="none" stroke="#666" stroke-dasharray="0.8, 0.6" stroke-width="0.2" />
+  <text x="120.5" y="247.5" font-size="2.2" font-weight="bold" fill="#fff" font-family="sans-serif">MEZASTAR TAG</text>
+  <text x="120.5" y="252.5" font-size="3.0" font-weight="bold" fill="#fff" font-family="sans-serif">LUCARIO</text>
+  <text x="120.5" y="256.5" font-size="2.0" fill="#ccc" font-family="sans-serif">GRADE: 5 STAR</text>
+  <text x="120.5" y="260" font-size="2.0" fill="#ccc" font-family="sans-serif">SERIES: 79</text>
+  <text x="120.5" y="264.5" font-size="2.3" font-weight="bold" fill="#ffdf40" font-family="monospace">HEX: 79 66 44 20</text>
+  <rect x="156.5" y="248.5" width="15" height="15" fill="#fff" stroke="#999" stroke-width="0.1" />
+  <rect x="158.26" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="250.26" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="251.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="251.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="251.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="251.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="251.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="251.15" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="252.03" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="252.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="252.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="252.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="252.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="252.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="252.91" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="253.79" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="254.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="254.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="254.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="254.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="254.68" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="255.56" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="256.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="256.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="256.44" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="257.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="257.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="257.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="257.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="257.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="257.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="257.32" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="258.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="258.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="258.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="258.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="258.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="258.21" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="165.32" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="166.21" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="259.09" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="259.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="259.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.91" y="259.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="259.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="259.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="259.97" width="0.90" height="0.90" fill="#000" />
+  <rect x="158.26" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="159.15" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="160.03" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="161.79" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="162.68" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="163.56" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="164.44" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.09" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="167.97" y="260.85" width="0.90" height="0.90" fill="#000" />
+  <rect x="168.85" y="260.85" width="0.90" height="0.90" fill="#000" />
+</svg>

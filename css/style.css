@@ -861,18 +861,53 @@ body {
   line-height: 1.5;
 }
 
+.btn-purple {
+  background: linear-gradient(135deg, #9333EA 0%, #7E22CE 100%);
+  color: #FFFFFF;
+}
+
+.btn-purple:hover {
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 100%);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+}
+
 /* --- Print Stylesheet --- */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
   body {
     background: #FFFFFF !important;
     color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
-  .header, .nav-tabs, .header-actions, .card-panel, .btn-group, #app-toast {
+  .header, .nav-tabs, .header-actions, .card-panel:first-child, .btn-group, #app-toast, button, .panel-header {
     display: none !important;
   }
-  .preview-container {
-    border: none !important;
+  .content-wrapper {
     padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  .two-col-grid {
+    display: block !important;
+  }
+  .card-panel {
+    border: none !important;
     background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+  img[src="mezastar_template_a4_5tags.svg"] {
+    width: 210mm !important;
+    height: 297mm !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: block !important;
+    margin: 0 auto !important;
   }
 }
+
