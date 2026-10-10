@@ -167,8 +167,8 @@ const MezaScanner = (function() {
     animationFrameId = requestAnimationFrame(processFrame);
   }
 
-  // Scan a static image file
-  async function scanStaticImage(imgElement) {
+  // Scan a static image file (direct file buffer + canvas fallback)
+  async function scanImage(imgElement, file = null) {
     const width = imgElement.naturalWidth || imgElement.width;
     const height = imgElement.naturalHeight || imgElement.height;
 
@@ -180,8 +180,80 @@ const MezaScanner = (function() {
     displayCtx.drawImage(imgElement, 0, 0, width, height);
     hiddenCtx.drawImage(imgElement, 0, 0, width, height);
 
-    const imageData = hiddenCtx.getImageData(0, 0, width, height);
-    return await detectAndRender(imageData, width, height);
+    let processedMarkers = [];
+
+    // 1. Direct File decode with ZXingWASM (highest accuracy for uploaded images)
+    if (file && typeof ZXingWASM !== 'undefined' && ZXingWASM.readBarcodesFromImageFile) {
+      try {
+        const fileQRs = await ZXingWASM.readBarcodesFromImageFile(file, {
+          formats: ['MicroQRCode', 'QRCode', 'RMQRCode'],
+          tryHarder: true,
+          tryRotate: true,
+          tryInvert: true
+        });
+
+        if (fileQRs && fileQRs.length > 0) {
+          fileQRs.forEach(qr => {
+            const p = qr.position;
+            if (!p || !p.topLeft) return;
+
+            const corners = [
+              { x: p.topLeft.x, y: p.topLeft.y },
+              { x: p.topRight.x, y: p.topRight.y },
+              { x: p.bottomRight.x, y: p.bottomRight.y },
+              { x: p.bottomLeft.x, y: p.bottomLeft.y }
+            ];
+
+            const cx = (corners[0].x + corners[1].x + corners[2].x + corners[3].x) / 4;
+            const cy = (corners[0].y + corners[1].y + corners[2].y + corners[3].y) / 4;
+
+            const dx = corners[1].x - corners[0].x;
+            const dy = corners[1].y - corners[0].y;
+            let angleDeg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
+            if (angleDeg < 0) angleDeg += 360;
+
+            const edgeLen = Math.round(Math.hypot(dx, dy));
+            const pokemon = MezaDB.getById(qr.text);
+            const tier = MezaDB.STAR_TIERS[pokemon.stars] || MezaDB.STAR_TIERS[5];
+
+            const item = {
+              id: qr.text,
+              type: 'MicroQR',
+              format: qr.format || 'MicroQRCode',
+              corners,
+              center: { x: cx, y: cy },
+              angle: angleDeg,
+              size: edgeLen,
+              pokemon,
+              tier
+            };
+
+            processedMarkers.push(item);
+            MezaAudio.playScan();
+            drawMarkerOverlay(displayCtx, item);
+          });
+        }
+      } catch (err) {
+        console.warn('ZXing file decode error:', err);
+      }
+    }
+
+    // 2. If no QR found from file or also check ArUco/Canvas
+    if (processedMarkers.length === 0) {
+      const imageData = hiddenCtx.getImageData(0, 0, width, height);
+      processedMarkers = await detectAndRender(imageData, width, height);
+    } else {
+      if (onMarkersDetectedCallback) {
+        onMarkersDetectedCallback({
+          markers: processedMarkers,
+          fps: currentFps,
+          totalCount: processedMarkers.length,
+          dictionaryName: currentDictionary
+        });
+      }
+    }
+
+    return processedMarkers;
   }
 
   // Core detection and AR overlay rendering
@@ -189,7 +261,8 @@ const MezaScanner = (function() {
     const processedMarkers = [];
     const currentSeenIds = new Set();
 
-    const shouldCheckQR = (currentDictionary === 'AUTO_DETECT' || currentDictionary === 'MEZASTAR_MICRO_QR');
+    // Check QR/Micro QR in auto, micro QR, or as general fallback
+    const shouldCheckQR = true;
     const shouldCheckAruco = (currentDictionary !== 'MEZASTAR_MICRO_QR');
 
     // 1. Check for Micro QR Code / Mezastar Tag using ZXingWASM
@@ -433,7 +506,8 @@ const MezaScanner = (function() {
     stopCamera,
     getAvailableCameras,
     setDictionary,
-    scanStaticImage,
+    scanImage,
+    scanStaticImage: scanImage,
     onMarkersDetected,
     getCurrentFps: () => currentFps,
     getIsRunning: () => isRunning

@@ -334,8 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btnToggleCamera.classList.remove('btn-danger');
         btnToggleCamera.classList.add('btn-primary');
 
-        const found = await MezaScanner.scanStaticImage(img);
-        showToast(`Scan gambar selesai: ${found.length} marker/kode terdeteksi.`);
+        const found = await MezaScanner.scanImage(img, file);
+        if (found && found.length > 0) {
+          showToast(`✅ Berhasil! Terdeteksi ${found.length} tag (${found[0].pokemon.name || found[0].id}).`);
+        } else {
+          showToast(`⚠️ Tidak ada marker/QR code yang terdeteksi.`);
+        }
       };
       img.src = evt.target.result;
     };
